@@ -45,6 +45,14 @@ Created one detailed analysis document per insight group (`rxjs-insight-01.md` t
 - Added **`README.md`** with a navigation table linking to all 14 insight documents and a source notes table.
 - Added the GitHub URL to both `CLAUDE.md` and `README.md`.
 
+### 5. CHANGES.md cross-linking
+
+After `CHANGES.md` was created, it was wired into the rest of the repository:
+
+- **`d83114a`** — Added a link to `CHANGES.md` below the `rxjs-insight-groups.md` reference line in `README.md`.
+- **`554c61f`** — Added a `CHANGES.md` row to the derived analysis sub-table in `CLAUDE.md` file overview.
+- **`318810b`** — Added a **Repository Files** section to `README.md` (table: README, CHANGES, CLAUDE, rxjs-insight-groups with links and descriptions).
+
 ---
 
 ## File inventory
