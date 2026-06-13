@@ -1,0 +1,79 @@
+#
+
+
+
+01 Historical Lineage
+
+02 {Time, Value} pairs
+
+03 Observer/Iterator Duality
+
+04 Functor / Monad
+
+05 Reactive Programming Paradigm
+
+06 Functional Reactive Programming
+
+07 RxJS as a DSL
+
+08 Unifying Async Model
+
+09 Operator Taxonomy
+
+10 Three-Step Workflow
+
+11 Hot vs Cold
+
+12 Declarative vs Imperative
+
+13 Practical Concerns
+
+14 TypeScript
+
+
+
+RxJS as a DSL
+
+Unifying Async Model
+
+Operator Taxonomy
+
+Three-Step Workflow
+
+Hot vs Cold
+
+Declarative vs Imperative
+
+Practical Concerns
+
+TypeScript
+
+Theme
+
+Haskell + LINQ + Rx. NET + RxJS
+
+Observable as a formal sequence
+
+Push vs pull, inverted interfaces
+
+Mathematical structure, flatMap laws
+
+Propagation of change, dependency graph, Reactive Manifesto
+
+FP principles applied to streams
+
+Operators as vocabulary, domain independence
+
+Callbacks, Promises, events + one interface
+
+Creation/pipeline, first/higher-order, value/time, family trees
+
+Source + Pipeline + Sink
+
+Unicast/multicast, share/shareReplay
+
+Observable vs Array, how vs what
+
+Memory, error handling, backpressure, testing
+
+Key types, OperatorFunction<T,R>

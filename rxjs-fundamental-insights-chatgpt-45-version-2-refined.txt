@@ -1,0 +1,124 @@
+Rxjs general
+-------------------------------------------------------------------------------------------------------
+- port of Rx.net to Javascript (inherits many charactersistics from Rx.net)
+- intersection of Iterator and Subject/Observer Pattern
+- Separation into a Producer and one Consumer
+- makes Events a first-class citizen in Javascript
+- helps in orchestrating frontend Events with Http Requests
+
+
+
+Rxjs based of Functional Programming Principle
+-------------------------------------------------------------------------------------------------------
+
+
+Rxs is Reactive Programming
+-------------------------------------------------------------------------------------------------------
+
+Unidirectional Dataflow
+Data Propagation
+Dependency Graph
+
+Rxjs is Functional Reactive Programming
+-------------------------------------------------------------------------------------------------------
+
+
+Rxjs is a DSL
+-------------------------------------------------------------------------------------------------------
+
+
+
+1. Observable as Infinite Stream
+-------------------------------------------------------------------------------------------------------
+Observable is an infinite list of pairs of Time T and value a: [{T, a}..].
+
+An Observable is an infinite stream, formally defined as a potentially unbounded sequence 
+of pairs representing values (a) emitted over discrete points in time T:
+Observable = [{T,a..}]
+
+RxJS makes Events first-class citizens in the language.:
+
+RxJS promotes Events to first-class citizens, representing them as observable streams. 
+This enables composability through powerful functional programming constructs, 
+allowing streams of events to be manipulated, passed around, and composed seamlessly.
+
+RxJS Observable is a unifying interface that makes no assumption on the structure of the underlying datasource.
+
+The RxJS Observable interface abstracts the specifics of underlying data sources 
+(arrays, Promises, DOM events, web sockets, etc.), 
+providing a consistent and composable model regardless of the source type.
+
+RxJS is the intersection of the Iterator and Subject/Observer Pattern.
+
+Refined Statement:
+
+RxJS integrates both the pull-based Iterator Pattern and the push-based Observer Pattern, 
+
+thereby creating a unified approach capable of handling both synchronous and asynchronous data streams.
+
+2. Observer
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+3. Subscription
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+4. Operators
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+5. Subjects
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+6. Schedulers
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+7. Error Handling
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+8. Debugging
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+9. Testing
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+10. Visualization
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+11. Reactive Applications in MVA Architecture style with Rxjs and Typescript for Model and HTML with String Literatl Types
+-------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,176 @@
+basic terms
+
+synchronous	- 	asynchronous
+1 process		2 processes
+pull		-	push
+eager			lazy
+array filter		observable filter
+array map                      +   map pipeline
+blocking		non blocking
+imperative		declarative
+statement		expression
+semicolon		function composition and data flow
+array			sequence
+function		operator
+higher-order function	higher-order operator
+
+map			is function application
+filter			is querying data
+
+value-based
+time-based
+
+Subject/Observer Pattern
+Iterator pattern
+Rxjs = Subject/Observer + Iterator pattern 
+
+Communication Pattern between Producer and Consumer
+-----------------------------------------------
+Producer - Consumer
+--------------------------------------------
+1	- 	1
+1	-	n
+
+Main RxJS players
+------------------
+· Observable - a producer of sequences of values
+
+· Observer - a consumer of observable values
+
+· Subscriber - connects observer with observable
+
+  Subscription - manages lifecycle of an observable
+
+· Operator
+
+· Subject - includes both an Observable and Observer(s)
+
+- en-route value transformation
+
+Observable
+----------
+An Observable allows:
+
+· Subscribe/unsubscribe to its data stream
+
+· Emit the next value to the observer
+
+. Notify the observer about errors
+
+· Inform the observer about the stream completion
+
+Observable factory functions
+----------------------------
+from		array
+of		comma separated values, arguments of a function
+generate	
+range		start, end		
+interval	milliseconds
+fromEvent 	web event, callback , node callback
+
+create an Observable
+-------------------------
+
+new Observable( subscriber) {
+	subscriber.next(1)
+	subscriber.next(2)
+}
+
+
+
+Observer
+----------
+
+
+Operator
+----------
+
+OperatorFunction
+
+
+map
+----------
+
+
+filter
+----------
+
+
+reduce
+----------
+accumulator is a reducer function which takes two values as input: aggregated value, current value
+
+scan
+---------
+
+
+rxjs pipeline
+-------------
+
+source:   |----
+          |----
+          |----
+
+	  nested source:   |----
+          	 	   |----
+          	 	   |----
+
+
+operator  >--->
+	  >--->
+	  >--->
+
+sink	  ----|
+  	  ----|
+  	  ----|
+
+Next 		Handling
+Error 		Handling
+Complete 	Handling
+
+Error-handling operators
+-------------------------
+error() is invoked by the Observable on the Observer.
+
+· catch() - intercepts the error in the subscriber before the observer gets it.
+
+· retry(n) - retry immediately up to n times
+
+. retryWhen(fn) - retries as prescribed by the argument function
+
+  timeout
+
+using switchMap to emulate a try catch in Rxjs
+----------------------------------------------------
+
+
+Failover with catch()
+---------------------------------------------------------
+// Declaring three data sources
+function getData(): Observable ( ... ) // data source 1
+
+function getCachedData(): Observable ( ... ) // data source 2
+
+function getDataFromAnotherService(): Observable ( ... ) // data source 3
+
+//Invoking and subscribing
+getData()
+.catch(err => (
+
+if (err.status === 500) {
+console.error("Switching to retrieving cached beer data");
+return getCachedData();
+
+) elsel
+console.error("Switching to another data source");
+return getDataFromAnotherService();
+
+1
+
+.map(beer => beer.name +
+. subscribe(
+
+);
+
+" + beer.country)
+bcer => console. log("Subscriber got " + bcer)

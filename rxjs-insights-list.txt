@@ -1,0 +1,86 @@
+Summary of RxJS Insights:
+
+Rxjs has its origin in Microsoft LINQ:
+LINQ as Model for Operators: 
+The LINQ Standard Query Operators heavily influenced the design and naming of RxJS operators.
+
+LINQ has its origin in Haskell's List Comprehension and Monad
+
+Rxjs introduces a Unifying Programming Model:
+Rxjs unifies the programming against callback style code: callback, node emitter, promise, event handling
+
+Reactive Programming Paradigm: 
+RxJS is based on this paradigm, which deals with asynchronous data streams and the propagation of change.
+
+Characteristics of Reactive Prog.: 
+Includes responsiveness, resilience, elasticity, and being message-driven; focuses on reacting to event/data streams.
+
+Dependency Tracking & Graph: 
+Reactive programming implicitly involves tracking dependencies and forming a graph to propagate changes.
+
+Functional Reactive Programming (FRP): 
+RxJS combines functional programming principles (pure functions, immutability, composition) with reactive programming.
+
+in Rxjs the Domain can change (web animations, stock quote prices, …) but the Operators stay the same
+
+RxJS as a DSL: RxJS acts as a Domain-Specific Language for orchestrating asynchronous data streams using its operators.
+
+Pattern Combination: 
+RxJS can be seen as a sophisticated combination of the Observer and Iterator (via duality) design patterns.
+
+
+Observable as Functor/Monad: 
+Observables exhibit properties of Functors, Applicative Functors, and Monads, enabling map, apply, and bind operations.
+
+Monadic Composition: Chaining operations (especially with flatMap) that return Observables, where the context is managed automatically.
+
+Observable as Time/Value Pairs: 
+An Observable can be seen as a lazy, potential infinite sequence of {Time, Value} pairs.
+Operator Categories by T/V: Some RxJS operators primarily handle the Time aspect (e.g., timer, interval), others the Value aspect (e.g., map, take).
+
+First-Order vs. Higher-Order Ops: 
+Some operators deal with simple values, while higher-order (flattening) operators deal with Observables of Observables.
+Operators as Combinators: 
+RxJS operators act as combinators, allowing composition of stream transformations in a functional style.
+
+Rxjs can handle:
+value to value
+value to Observable
+Observable to Observable
+Observable of Observables to Observable
+
+Categorization of Operators: 
+The large number of RxJS operators can be grouped into categories like Creation, Transformation, Filtering, etc.
+
+Workhorse Operators: 
+map and the flatMap family (mergeMap, switchMap, etc.) are considered fundamental, frequently used operators.
+
+flatMap's Expressive Power: 
+Many RxJS operators could theoretically be implemented in terms of flatMap, highlighting its core monadic role.
+
+Essential RxJS TypeScript Types:
+Key types like Observable<T>, Observer<T>, Subscription, Subject<T>, OperatorFunction<T,R> are vital.
+
+Custom Operator Typing: 
+OperatorFunction<T,R> helps in concisely and correctly typing custom RxJS operators.
+
+Canonical Rxjs Three-Step Workflow: 
+1. Create (enter RxJS world), 
+2. Pipe (transform data), 
+3. Subscribe (apply side effects).
+Source -> Pipeline -> Sink 
+
+Rxjs Operators create a tree of Subscriptions
+
+Rxjs Observable is a Producer and Rxjs Observer is a Consumer
+
+The communication between Observable and Observer has rules: next, error | complete
+
+The Rxjs Execution Model is determinded by Hot and Cold Observable
+
+Hot Observable have the drawback of having possible late Subscribers
+
+Rxjs has some Operator families: Throttle, Window, Sample, Audit, Debounce, Buffer, Take, Skip, Merge, Concat, Combine, Exhaust, Switch, …
+
+
+

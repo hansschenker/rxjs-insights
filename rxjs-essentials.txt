@@ -1,0 +1,52 @@
+the Rxjs Observable is in fact an inverted Javascript Iterator
+GPT
+Yes, you can think of the RxJS Observable as a sort of "inverted" JavaScript Iterator, but it's important to clarify what that means and how these concepts differ fundamentally in their operation and usage.
+
+JavaScript Iterator
+In JavaScript, an iterator is a design pattern that provides a mechanism to traverse through a collection, typically one item at a time, without exposing the underlying representation of the collection. An iterator typically implements a next() method that returns the next item in the sequence, along with a done boolean that indicates whether the sequence has been exhausted.
+
+Comparison: Pull vs. Push
+-------------------------------
+Iterator (Pull): 
+The consumer (caller of next()) controls when to receive data from the iterator. It's a pull-based approach because the consumer pulls data from the producer (the collection being iterated over).
+
+Observable (Push): 
+In contrast, an Observable pushes data to the consumer (the subscriber). The producer (the observable) decides when the consumer receives data, which can happen asynchronously. The consumer subscribes and reacts to data as it arrives.
+
+Conceptual Inversion
+This "inversion" means switching from a pull-based mechanism (Iterator) to a push-based mechanism (Observable). This inversion is central to understanding reactive programming, where data streams are pushed to consumers who react to new data instead of actively requesting it.
+
+Synchronous vs Asynchronous
+---------------------------------
+The core of JavaScript is largely synchronous, in that functions complete their task fully, before completing. Prior to the advent of AJAX, it was really only setTimeout and setInterval that provided asynchronous behavior.
+
+However, it's easy to forget that event handlers are, effectively async code. Attaching a handler does not invoke the handler code and that code isn't executed until some unknowable time in the future.
+
+Then came AJAX, with its calls to the server. These calls could be configured to be synchronous, but developers generally preferred async calls and used callback methods to implement them.
+
+Then, we saw the proliferation of JS libraries and toolkits. These strove to homogenize different browsers' implementations of things and built on the callback approach to async code. You also started to see a lot more synchronous callbacks for things like array iteration or CSS query result handling.
+
+Now, we are seeing Deferreds and Promises in the mix. These are objects that represent the value of a long running operation and provide an API for handling that value when it arrives.
+
+NodeJS leans towards an async approach to many things; that much is true. However this is more a design decision on their part, rather than any inherent async nature of JS.
+
+In node long running processes use process.nextTick() to queue up the functions/callbacks. This is usually done in the API of node and unless your programming(outside the api) with something that is blocking or code that is long running then it doesn't really effect you much. The link below should explain it better then I can.
+
+howtonode process.nextTick()
+
+jQuery AJAX also takes callbacks and such as it its coded not to wait for server responses before moving on to the next block of code. It just rememebers the function to run when the server responds. This is based on XMLHTTPRequest object that the browsers expose. The XHR object will remember the function to call back when the response returns.
+
+setTimeout(fn, 0) of javascript will run a function once the call stack is empty (next available free tick) which can be used to create async like features.setTimeout(fn, 0) question on stackoverflow
+
+To summerise the async abilities of javascript is as much to do with the environments they are programmed in as javascript itself. You do not gain any magic by just using lots of function calls and callbacks unless your using some API/script.
+
+
+Eager vs Lazy
+----------------------------------
+
+Imperative vs Declararive
+-----------------------------------
+
+
+Blocking vs Non Blocking
+-------------------------------------

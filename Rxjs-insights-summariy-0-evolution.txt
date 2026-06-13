@@ -1,0 +1,306 @@
+Section 0. Evolution of RxJS
+
+Haskell: Lazy Lists
+
+In Haskell, lists are lazy: 
+- elements are computed only when needed. 
+- This lets you model potentially infinite sequences (streams) with the same functions you use for finite ones.
+
+Functional operators like 
+- map, filter, foldr are composable and pure. 
+- They treat lists as functorial containers of values.
+
+Functorial Containers:
+
+In functional programming, a **Functor** is a type that implements a `map` function, 
+- allowing you to apply a transformation to the value(s) inside the container 
+  - while preserving its structure (apply the function and put it back into container. 
+
+In JavaScript, several data structures can be considered functorial because they provide a `map` method that adheres to the functor laws (identity and composition). 
+
+### JavaScript Functorial Containers
+
+1. **Array**
+   - **Description**: The most common functor in JavaScript. Arrays are collections of values that can be mapped over.
+   - **Map Method**: `Array.prototype.map`
+   - **Example**:
+     ```javascript
+     const arr = [1, 2, 3];
+     const mapped = arr.map(x => x * 2); // [2, 4, 6]
+     ```
+   - **Functor Laws**:
+     - **Identity**: `arr.map(x => x)` returns the same array (same values).
+     - **Composition**: `arr.map(x => f(g(x)))` is equivalent to `arr.map(g).map(f)`.
+
+
+4. **Promise**
+   - **Description**: Represents an asynchronous computation that eventually resolves to a value. Promises are functorial because they support `map`-like behavior via `then`.
+   - **Map Method**: `Promise.prototype.then` (behaves like `map` when used with a single function).
+   - **Example**:
+     ```javascript
+     const promise = Promise.resolve(5);
+     const mapped = promise.then(x => x * 2); // Promise resolves to 10
+     ```
+   - **Functor Laws**:
+     - **Identity**: `promise.then(x => x)` resolves to the same value.
+     - **Composition**: `promise.then(x => f(g(x)))` is equivalent to `promise.then(g).then(f)`.
+
+You're absolutely right that both Array and Promise in JavaScript are not only functors (because they implement a map-like operation) but also monads, as they support a flatten-like operation (or equivalent) and a way to "wrap" values (often called of or unit). In functional programming, a monad is a functor that also provides operations for flattening nested structures and wrapping values, adhering to the monad laws (left identity, right identity, and associativity). Let’s break this down for Array and Promise in JavaScript, addressing how they align with the monadic operations of map, flatten, and of.
+Key Monad Concepts
+A monad must provide:
+
+Map: A way to apply a function to the value(s) inside the container (functor requirement).
+Flatten: A way to collapse nested instances of the monad into a single instance (e.g., [[a]] -> [a]).
+Of/Unit: A way to wrap a value into the monad’s context (e.g., a -> M a, where M is the monad type).
+Monad Laws:
+
+Left Identity: M.of(a).flatMap(f) ≡ f(a)
+Right Identity: m.flatMap(M.of) ≡ m
+Associativity: m.flatMap(f).flatMap(g) ≡ m.flatMap(x => f(x).flatMap(g))
+
+
+
+1. Array as a Monad
+-----------------------------------------------------------------------
+Array is a monad in JavaScript because it supports map, flatten, and of-like operations.
+
+Map: Array.prototype.map
+
+Applies a function to each element in the array.
+Example: [1, 2, 3].map(x => x * 2) // [2, 4, 6]
+
+
+Flatten: Array.prototype.flat (or Array.prototype.concat in older code)
+
+Collapses nested arrays into a single array.
+Example: [[1, 2], [3, 4]].flat() // [1, 2, 3, 4]
+
+
+Of/Unit: Wrapping a value into an array context, e.g., [a] or Array.of(a).
+
+Example: Array.of(5) // [5]
+
+
+FlatMap (Chain): JavaScript’s Array.prototype.flatMap combines map and flatten in one step.
+
+Example:
+javascriptconst arr = [1, 2, 3];
+arr.flatMap(x => [x, x * 2]); // [1, 2, 2, 4, 3, 6]
+
+This is equivalent to arr.map(x => [x, x * 2]).flat().
+
+
+Monad Laws for Array:
+
+Left Identity: Array.of(a).flatMap(f) ≡ f(a)
+javascriptArray.of(5).flatMap(x => [x * 2]) // [10]
+// Equivalent to: [x * 2] where x = 5, i.e., [10]
+
+Right Identity: arr.flatMap(Array.of) ≡ arr
+javascriptconst arr = [1, 2, 3];
+arr.flatMap(x => Array.of(x)) // [1, 2, 3]
+
+Associativity: arr.flatMap(f).flatMap(g) ≡ arr.flatMap(x => f(x).flatMap(g))
+javascriptconst f = x => [x + 1];
+const g = x => [x * 2];
+const arr = [1, 2];
+arr.flatMap(f).flatMap(g); // [4, 6]
+arr.flatMap(x => f(x).flatMap(g)); // [4, 6]
+
+
+
+
+2. Promise as a Monad
+Promise is also a monad because it supports map, flatten, and of-like operations, with then serving as the monadic flatMap (combining map and flatten).
+
+Map: Promise.prototype.then (when used with a function that returns a non-Promise value).
+
+Example:
+javascriptPromise.resolve(5).then(x => x * 2); // Promise resolves to 10
+
+
+
+Flatten: then automatically flattens nested promises (a Promise of a Promise becomes a single Promise).
+
+Example:
+javascriptconst nested = Promise.resolve(Promise.resolve(5));
+nested.then(x => x); // Promise resolves to 5 (flattened)
+
+Unlike Array, Promise doesn’t have a separate flatten method; flattening is implicit in then when the mapped function returns a Promise.
+
+
+Of/Unit: Promise.resolve(a) wraps a value into a Promise context.
+
+Example: Promise.resolve(5) // Promise resolves to 5
+
+
+FlatMap (Chain): Promise.prototype.then acts as flatMap when the mapping function returns a Promise, as it flattens the result.
+
+Example:
+javascriptPromise.resolve(5).then(x => Promise.resolve(x * 2)); // Promise resolves to 10
+
+
+
+Monad Laws for Promise:
+
+Left Identity: Promise.resolve(a).then(f) ≡ f(a)
+javascriptconst f = x => Promise.resolve(x * 2);
+Promise.resolve(5).then(f); // Promise resolves to 10
+f(5); // Promise resolves to 10
+
+Right Identity: promise.then(Promise.resolve) ≡ promise
+javascriptconst promise = Promise.resolve(5);
+promise.then(Promise.resolve); // Promise resolves to 5
+
+Associativity: promise.then(f).then(g) ≡ promise.then(x => f(x).then(g))
+javascriptconst f = x => Promise.resolve(x + 1);
+const g = x => Promise.resolve(x * 2);
+const promise = Promise.resolve(1);
+promise.then(f).then(g); // Promise resolves to 4
+promise.then(x => f(x).then(g)); // Promise resolves to 4
+
+
+
+
+Clarification on Promise.then
+You mentioned then = map + flatten, which is spot-on. The then method is effectively a flatMap operation:
+
+If the function passed to then returns a plain value, it acts like map (wraps the result in a Promise).
+If the function returns a Promise, then flattens the nested Promise into a single Promise, making it monadic.
+Example combining both:
+javascriptPromise.resolve(5)
+  .then(x => x * 2) // Like map: returns Promise resolving to 10
+  .then(x => Promise.resolve(x + 1)); // Like flatMap: flattens to Promise resolving to 11
+
+
+Other Native JavaScript Types
+As noted earlier, Map and Set are not monads in their native form because they lack a built-in map (for functor) and flatten (for monad). While you can implement monadic behavior for them with custom methods, they aren’t monads out of the box.
+Summary
+The native JavaScript functorial containers that are also monads are:
+
+Array: Supports map, flat, flatMap, and Array.of for monadic operations.
+Promise: Supports then (as map and flatMap) and Promise.resolve for wrapping values.
+
+If you’d like to explore how to implement monadic behavior for non-native types like Maybe or Either, or dive deeper into monad laws with more examples, let me know!
+
+### Notes
+- **Built-in vs. Custom**: `Array` and `Promise` are built-in JavaScript types with clear functorial behavior. `Maybe` and `Either` typically come from libraries (e.g., `folktale`, `sanctuary`, or `ramda`) or custom implementations.
+- **Map and Set**: These require custom `map` implementations to be treated as functors, but they can fit the functor pattern with proper handling.
+- **Other Libraries**: Functional programming libraries like `ramda`, `crocks`, or `sanctuary` provide additional functorial types (e.g., `List`, `Reader`, `IO`), but these are not native to JavaScript.
+- **Functor Laws**: For a type to be a functor, its `map` must satisfy:
+  - **Identity**: `map(x => x)` leaves the container unchanged.
+  - **Composition**: `map(x => f(g(x)))` is equivalent to `map(g).map(f)`.
+
+If you’re using a specific library or want me to dive deeper into any of these (e.g., implementing a custom functor or exploring library-specific types), let me know!
+
+Relevance for RxJS:
+
+Lazy lists = values in space, pulled on demand.
+
+Observables = values in time, pushed on arrival.
+
+Many RxJS operators (map, filter, reduce) directly borrow from Haskell list combinators.
+
+Example:
+
+-- Infinite lazy list of even numbers doubled
+[x*2 | x <- [1..], even x]
+
+
+Equivalent RxJS idea:
+
+interval(1).pipe(
+  filter(x => x % 2 === 0),
+  map(x => x * 2)
+);
+
+LINQ (Language Integrated Query)
+
+Context: Introduced in C# (2007), LINQ provided query operators for arrays, XML, and databases with a unified syntax.
+
+Core idea: Bring declarative query comprehensions into the host language, instead of requiring SQL-like DSLs.
+
+FRP Connection: LINQ generalized the “list comprehension” model from Haskell into C#.
+
+Note: Erik Meijer originally referred to this as Language Integrated Monads (LIM) before Microsoft adopted the more marketable name LINQ.
+
+Example (C# LINQ):
+
+var evens = numbers
+  .Where(x => x % 2 == 0)
+  .Select(x => x * 2);
+
+
+Bridge to Rx: LINQ made the operator pattern explicit in mainstream languages. Rx took the same LINQ operators and applied them to asynchronous sequences.
+
+Rx.NET: The Mathematical Dual
+
+Context: Around 2009, Erik Meijer and team developed Reactive Extensions (Rx) for .NET.
+
+Key insight: The dual of IEnumerable is IObservable.
+
+IEnumerable<T>: a pull model (consumer asks for next).
+
+IObservable<T>: a push model (producer sends next).
+
+Both share the same combinators (map, filter, etc.), just mirrored.
+
+Importance: This duality framed Observables as a first-class abstraction for time-based, asynchronous sequences.
+
+Example:
+
+IObservable<int> xs = Observable.Range(1, 10);
+xs.Where(x => x % 2 == 0)
+  .Select(x => x * 2)
+  .Subscribe(Console.WriteLine);
+
+RxJS: The Port
+
+Context: Rx ideas were ported into JavaScript around 2011. This became RxJS.
+
+Clarification:
+
+In C#, “Extensions” referred to Extension Methods (a C# feature).
+
+In JavaScript, that name is misleading — RxJS doesn’t extend built-ins, it provides a standalone Observable library.
+
+So Reactive Extensions for JavaScript is a historical borrowing, not an accurate description.
+
+Unique Contributions of RxJS:
+
+Marble diagrams (widely adopted teaching tool).
+
+Clear distinction of Hot vs Cold observables.
+
+Rich ecosystem for browser apps (Ajax, DOM events).
+
+Example:
+
+of(1,2,3).pipe(
+  filter(x => x % 2 === 0),
+  map(x => x * 2)
+).subscribe(console.log);
+
+RxJS + TypeScript Typings
+
+Context: With TypeScript adoption (around RxJS 5/6), the library gained strong type definitions.
+
+Impact:
+
+Elevated RxJS from a “clever async tool” to a type-safe functional DSL.
+
+Developers could now model precise pipelines, narrowing types across map, filter, reduce, etc.
+
+Enabled advanced FP patterns: type-level state machines, tagged unions, and even compile-time guarantees.
+
+Example (type safety):
+
+const numbers$ = of(1, 2, 3);
+const doubled$ = numbers$.pipe(map(x => x * 2)); // inferred as Observable<number>
+
+
+Significance: TypeScript transformed RxJS into a compile-time checked FRP language inside JavaScript.
+
+✅ That expands Section 0 into a handbook chapter: clear lineage from Haskell → LINQ → Rx.NET → RxJS, with the crucial point that TypeScript typings raised RxJS into the realm of typed functional programming.
+
+Would you like me to next add diagrams (e.g. a duality diagram of IEnumerable vs IObservable, or a timeline graphic Haskell → LINQ → Rx.NET → RxJS), or should we continue by expanding Section 1. Core FRP Concepts in the same detailed style?

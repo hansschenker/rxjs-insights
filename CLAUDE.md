@@ -1,0 +1,52 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What This Directory Is
+
+A personal knowledge repository of RxJS learning notes — plain `.txt` files compiled from AI conversations (Claude, Grok, Gemini), books (Yakov Fain), and personal research. There is no build system, no tests, and no runnable code.
+
+## File Overview
+
+| File | Content |
+|------|---------|
+| `rxjs-insights-list.txt` | Condensed list of key RxJS conceptual insights |
+| `Rxjs-insights-summariy-0-evolution.txt` | Section 0: lineage from Haskell → LINQ → Rx.NET → RxJS |
+| `rxjs-insights-claude-01.txt` / `rxjs-insights-claude-all.txt` | Claude-generated deep-dives |
+| `rxjs-insights-grok-4.txt` / `rxjs-insights-grok-4-notebooklm.txt` | Grok 4 generated content |
+| `rxjs-essential-characteristics-grok3-com.txt` | Grok 3 characteristics overview |
+| `rxjs-essential-knowledge.txt` | Core RxJS knowledge reference |
+| `rxjs-essentials-vs-javascript-essentials.txt` | Contrast: RxJS concepts vs vanilla JS equivalents |
+| `rxjs-essentials-yakov-fain.txt` | Notes from Yakov Fain's RxJS book |
+| `rxjs-essentials.txt` | Observable-as-inverted-iterator essay |
+| `rxjs-fundamental-insights-chatgpt-45-version-2-refined.txt` | ChatGPT-refined fundamentals |
+| `rxjs-insights-gemini.txt` | Gemini-generated insights |
+
+## Conceptual Themes Across the Files
+
+The themes below are derived from cross-file analysis and documented in full in [`rxjs-insight-groups.md`](rxjs-insight-groups.md).
+
+| # | Group | One-line summary |
+|---|---|---|
+| 1 | Historical Lineage | Haskell → LINQ → Rx.NET → RxJS; each step added one dimension |
+| 2 | `{Time, Value}` pairs | Observable = lazy infinite sequence of `[{T, a}…]`; operators act on T or a |
+| 3 | Observer / Iterator Duality | Observable is an inverted Iterator: push vs pull, same algebra |
+| 4 | Functor / Monad | Observable satisfies Functor → Applicative → Monad; `flatMap` is the monadic bind |
+| 5 | Reactive Programming Paradigm | Change propagates through a dependency graph; Reactive Manifesto: responsive, resilient, elastic, message-driven |
+| 6 | Functional Reactive Programming | FP principles (pure functions, immutability, composition) applied to time-varying streams |
+| 7 | RxJS as a DSL | Operators = vocabulary; `pipe()` = grammar; domain changes, operators stay the same |
+| 8 | Unifying Async Model | Callbacks, Promises, DOM events, EventEmitters → one `Observable` interface |
+| 9 | Operator Taxonomy | Creation vs pipeline; first-order vs higher-order; value-based vs time-based; complex built from simple |
+| 10 | Three-Step Workflow | Create (source) → Pipe (transform) → Subscribe (sink); nothing runs until subscribe |
+| 11 | Hot vs Cold | Cold = unicast, starts on subscribe; Hot = multicast, runs independently; `share`/`shareReplay` bridge them |
+| 12 | Declarative vs Imperative | Observable does not store data; values are pushed as they arrive, discarded after |
+| 13 | Practical Concerns | Subscription cleanup, error handling (`catchError`, `retry`), backpressure, marble testing |
+| 14 | TypeScript Integration | `Observable<T>`, `OperatorFunction<T,R>` give compile-time guarantees across `pipe()` chains |
+
+## Working With These Files
+
+When asked to add, expand, or synthesise content here:
+- Write plain text or lightly structured Markdown — no code scaffolding
+- Keep new material consistent with the conceptual framing already present (FRP, duality, monad/functor language)
+- Prefer editing an existing file over creating a new one unless the topic is clearly distinct
+- Name new files in lowercase kebab-case with the `rxjs-` prefix
