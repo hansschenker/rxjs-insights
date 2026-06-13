@@ -1,5 +1,7 @@
 # RxJS Insights
 
+> https://github.com/hansschenker/rxjs-insights
+
 A personal knowledge repository of RxJS conceptual insights, compiled from AI conversations (Claude, Grok, Gemini), books (Yakov Fain), and personal research.
 
 The raw notes in the `.txt` files have been cross-analysed and organised into **14 thematic insight groups**, each with a dedicated deep-dive document.
