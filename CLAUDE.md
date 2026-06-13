@@ -26,22 +26,22 @@ A personal knowledge repository of RxJS learning notes — plain `.txt` files co
 
 The themes below are derived from cross-file analysis and documented in full in [`rxjs-insight-groups.md`](rxjs-insight-groups.md).
 
-| # | Group | One-line summary |
-|---|---|---|
-| 1 | Historical Lineage | Haskell → LINQ → Rx.NET → RxJS; each step added one dimension |
-| 2 | `{Time, Value}` pairs | Observable = lazy infinite sequence of `[{T, a}…]`; operators act on T or a |
-| 3 | Observer / Iterator Duality | Observable is an inverted Iterator: push vs pull, same algebra |
-| 4 | Functor / Monad | Observable satisfies Functor → Applicative → Monad; `flatMap` is the monadic bind |
-| 5 | Reactive Programming Paradigm | Change propagates through a dependency graph; Reactive Manifesto: responsive, resilient, elastic, message-driven |
-| 6 | Functional Reactive Programming | FP principles (pure functions, immutability, composition) applied to time-varying streams |
-| 7 | RxJS as a DSL | Operators = vocabulary; `pipe()` = grammar; domain changes, operators stay the same |
-| 8 | Unifying Async Model | Callbacks, Promises, DOM events, EventEmitters → one `Observable` interface |
-| 9 | Operator Taxonomy | Creation vs pipeline; first-order vs higher-order; value-based vs time-based; complex built from simple |
-| 10 | Three-Step Workflow | Create (source) → Pipe (transform) → Subscribe (sink); nothing runs until subscribe |
-| 11 | Hot vs Cold | Cold = unicast, starts on subscribe; Hot = multicast, runs independently; `share`/`shareReplay` bridge them |
-| 12 | Declarative vs Imperative | Observable does not store data; values are pushed as they arrive, discarded after |
-| 13 | Practical Concerns | Subscription cleanup, error handling (`catchError`, `retry`), backpressure, marble testing |
-| 14 | TypeScript Integration | `Observable<T>`, `OperatorFunction<T,R>` give compile-time guarantees across `pipe()` chains |
+| # | Group | Detail | One-line summary |
+|---|---|---|---|
+| 1 | Historical Lineage | [rxjs-insight-01.md](rxjs-insight-01.md) | Haskell → LINQ → Rx.NET → RxJS; each step added one dimension |
+| 2 | `{Time, Value}` pairs | [rxjs-insight-02.md](rxjs-insight-02.md) | Observable = lazy infinite sequence of `[{T, a}…]`; operators act on T or a |
+| 3 | Observer / Iterator Duality | [rxjs-insight-03.md](rxjs-insight-03.md) | Observable is an inverted Iterator: push vs pull, same algebra |
+| 4 | Functor / Monad | [rxjs-insight-04.md](rxjs-insight-04.md) | Observable satisfies Functor → Applicative → Monad; `flatMap` is the monadic bind |
+| 5 | Reactive Programming Paradigm | [rxjs-insight-05.md](rxjs-insight-05.md) | Change propagates through a dependency graph; Reactive Manifesto: responsive, resilient, elastic, message-driven |
+| 6 | Functional Reactive Programming | [rxjs-insight-06.md](rxjs-insight-06.md) | FP principles (pure functions, immutability, composition) applied to time-varying streams |
+| 7 | RxJS as a DSL | [rxjs-insight-07.md](rxjs-insight-07.md) | Operators = vocabulary; `pipe()` = grammar; domain changes, operators stay the same |
+| 8 | Unifying Async Model | [rxjs-insight-08.md](rxjs-insight-08.md) | Callbacks, Promises, DOM events, EventEmitters → one `Observable` interface |
+| 9 | Operator Taxonomy | [rxjs-insight-09.md](rxjs-insight-09.md) | Creation vs pipeline; first-order vs higher-order; value-based vs time-based; complex built from simple |
+| 10 | Three-Step Workflow | [rxjs-insight-10.md](rxjs-insight-10.md) | Create (source) → Pipe (transform) → Subscribe (sink); nothing runs until subscribe |
+| 11 | Hot vs Cold | [rxjs-insight-11.md](rxjs-insight-11.md) | Cold = unicast, starts on subscribe; Hot = multicast, runs independently; `share`/`shareReplay` bridge them |
+| 12 | Declarative vs Imperative | [rxjs-insight-12.md](rxjs-insight-12.md) | Observable does not store data; values are pushed as they arrive, discarded after |
+| 13 | Practical Concerns | [rxjs-insight-13.md](rxjs-insight-13.md) | Subscription cleanup, error handling (`catchError`, `retry`), backpressure, marble testing |
+| 14 | TypeScript Integration | [rxjs-insight-14.md](rxjs-insight-14.md) | `Observable<T>`, `OperatorFunction<T,R>` give compile-time guarantees across `pipe()` chains |
 
 ## Working With These Files
 
