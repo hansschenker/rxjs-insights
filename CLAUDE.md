@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A personal knowledge repository of RxJS learning notes — plain `.txt` files compiled from AI conversations (Claude, Grok, Gemini), books (Yakov Fain), and personal research. There is no build system, no tests, and no runnable code.
 
+**GitHub:** https://github.com/hansschenker/rxjs-insights
+
 ## File Overview
 
 ### Source notes (`.txt`)
