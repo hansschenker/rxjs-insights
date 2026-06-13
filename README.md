@@ -33,6 +33,17 @@ A complete log of all work done to produce this repository is in [CHANGES.md](CH
 
 ---
 
+## Repository Files
+
+| File | Description |
+|---|---|
+| [README.md](README.md) | This file — navigation and overview |
+| [CHANGES.md](CHANGES.md) | Session work log: all files created and changes made |
+| [CLAUDE.md](CLAUDE.md) | Claude Code guidance for working in this repo |
+| [rxjs-insight-groups.md](rxjs-insight-groups.md) | Full index of all 14 groups with source references |
+
+---
+
 ## Source Notes
 
 The `.txt` files are the raw material these analyses were derived from:
