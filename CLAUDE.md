@@ -30,6 +30,7 @@ A personal knowledge repository of RxJS learning notes — plain `.txt` files co
 
 | File | Content |
 |------|---------|
+| [`CHANGES.md`](CHANGES.md) | Session work log: all files created and changes made |
 | [`rxjs-insight-groups.md`](rxjs-insight-groups.md) | Index of all 14 insight groups with summaries and source references |
 | [`rxjs-insight-01.md`](rxjs-insight-01.md) | Historical Lineage: Haskell → LINQ → Rx.NET → RxJS |
 | [`rxjs-insight-02.md`](rxjs-insight-02.md) | Observable as `{Time, Value}` pairs; value-based vs time-based operators |
