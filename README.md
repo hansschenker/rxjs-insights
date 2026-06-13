@@ -29,6 +29,8 @@ The raw notes in the `.txt` files have been cross-analysed and organised into **
 
 The full index with source references for each group is in [rxjs-insight-groups.md](rxjs-insight-groups.md).
 
+A complete log of all work done to produce this repository is in [CHANGES.md](CHANGES.md).
+
 ---
 
 ## Source Notes
