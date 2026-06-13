@@ -8,6 +8,8 @@ A personal knowledge repository of RxJS learning notes — plain `.txt` files co
 
 ## File Overview
 
+### Source notes (`.txt`)
+
 | File | Content |
 |------|---------|
 | `rxjs-insights-list.txt` | Condensed list of key RxJS conceptual insights |
@@ -21,6 +23,26 @@ A personal knowledge repository of RxJS learning notes — plain `.txt` files co
 | `rxjs-essentials.txt` | Observable-as-inverted-iterator essay |
 | `rxjs-fundamental-insights-chatgpt-45-version-2-refined.txt` | ChatGPT-refined fundamentals |
 | `rxjs-insights-gemini.txt` | Gemini-generated insights |
+
+### Derived analysis (`.md`)
+
+| File | Content |
+|------|---------|
+| [`rxjs-insight-groups.md`](rxjs-insight-groups.md) | Index of all 14 insight groups with summaries and source references |
+| [`rxjs-insight-01.md`](rxjs-insight-01.md) | Historical Lineage: Haskell → LINQ → Rx.NET → RxJS |
+| [`rxjs-insight-02.md`](rxjs-insight-02.md) | Observable as `{Time, Value}` pairs; value-based vs time-based operators |
+| [`rxjs-insight-03.md`](rxjs-insight-03.md) | Observer / Iterator Duality: push vs pull, inverted interfaces |
+| [`rxjs-insight-04.md`](rxjs-insight-04.md) | Observable as Functor / Applicative / Monad; `flatMap` laws |
+| [`rxjs-insight-05.md`](rxjs-insight-05.md) | Reactive Programming Paradigm; dependency graph; Reactive Manifesto |
+| [`rxjs-insight-06.md`](rxjs-insight-06.md) | Functional Reactive Programming; pure functions, immutability, side effects at edges |
+| [`rxjs-insight-07.md`](rxjs-insight-07.md) | RxJS as a DSL; operators as vocabulary; domain independence |
+| [`rxjs-insight-08.md`](rxjs-insight-08.md) | Unifying Async Model; callbacks / Promises / events → one interface |
+| [`rxjs-insight-09.md`](rxjs-insight-09.md) | Operator Taxonomy; three axes; family trees; 16 essential operators |
+| [`rxjs-insight-10.md`](rxjs-insight-10.md) | Three-Step Workflow: Create → Pipe → Subscribe; subscription tree |
+| [`rxjs-insight-11.md`](rxjs-insight-11.md) | Hot vs Cold; unicast vs multicast; `share` / `shareReplay` / Subject |
+| [`rxjs-insight-12.md`](rxjs-insight-12.md) | Declarative vs Imperative; Observable does not store data |
+| [`rxjs-insight-13.md`](rxjs-insight-13.md) | Practical Concerns: memory, error handling, backpressure, marble testing |
+| [`rxjs-insight-14.md`](rxjs-insight-14.md) | TypeScript Integration; `Observable<T>`, `OperatorFunction<T,R>` |
 
 ## Conceptual Themes Across the Files
 
