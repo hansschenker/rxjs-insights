@@ -4,7 +4,7 @@ Insights from all source files, clustered by theme. Each group lists the files w
 
 ---
 
-## 1. Historical Lineage: Haskell → LINQ → Rx.NET → RxJS
+## 1. Historical Lineage: Haskell → LINQ → Rx.NET → RxJS — [detail](rxjs-insight-01.md)
 
 The intellectual ancestry of RxJS traces a straight line through decades of functional programming research.
 
@@ -22,7 +22,7 @@ The intellectual ancestry of RxJS traces a straight line through decades of func
 
 ---
 
-## 2. Observable as {Time, Value} Pairs
+## 2. Observable as {Time, Value} Pairs — [detail](rxjs-insight-02.md)
 
 An Observable is formally a lazy, potentially infinite sequence of `{T, a}` pairs — a value `a` emitted at a point in time `T`:
 
@@ -46,7 +46,7 @@ Operators can then be categorised by which axis they act on:
 
 ---
 
-## 3. Observer / Iterator Duality: Push vs Pull
+## 3. Observer / Iterator Duality: Push vs Pull — [detail](rxjs-insight-03.md)
 
 The single deepest insight behind RxJS: **Observable is an inverted Iterator**.
 
@@ -68,7 +68,7 @@ The interfaces are mathematical duals — input and output simply swap. Erik Mei
 
 ---
 
-## 4. Observable as Functor / Applicative / Monad
+## 4. Observable as Functor / Applicative / Monad — [detail](rxjs-insight-04.md)
 
 Observables are proper mathematical structures satisfying the Functor–Applicative–Monad hierarchy:
 
@@ -92,7 +92,7 @@ Because `flatMap` is the universal monadic bind, many other operators (`merge`, 
 
 ---
 
-## 5. Reactive Programming Paradigm
+## 5. Reactive Programming Paradigm — [detail](rxjs-insight-05.md)
 
 Reactive programming reframes programs as **data flow graphs** where changes propagate automatically. The core shift: instead of imperatively mutating state and notifying dependants, you declare the dependency relationships and let the system propagate changes.
 
@@ -112,7 +112,7 @@ The **dependency graph** is the hidden infrastructure: when you chain operators,
 
 ---
 
-## 6. Functional Reactive Programming (FRP)
+## 6. Functional Reactive Programming (FRP) — [detail](rxjs-insight-06.md)
 
 FRP is the synthesis: **functional programming principles** applied to **time-varying reactive streams**.
 
@@ -138,7 +138,7 @@ Side effects are isolated at the **edges** of the pipeline — in `subscribe()` 
 
 ---
 
-## 7. RxJS as a DSL
+## 7. RxJS as a DSL — [detail](rxjs-insight-07.md)
 
 RxJS is an **embedded Domain-Specific Language** within JavaScript. It does not extend the JavaScript parser; it leverages JavaScript's own syntax (method chaining, higher-order functions, `pipe()`) to create a coherent, readable language for one specific domain.
 
@@ -159,7 +159,7 @@ What makes it a DSL:
 
 ---
 
-## 8. Unifying Async Programming Model
+## 8. Unifying Async Programming Model — [detail](rxjs-insight-08.md)
 
 Before RxJS, JavaScript had four incompatible async models: callbacks, Promises, EventEmitters, and DOM events. RxJS wraps all of them behind the same `Observable` interface:
 
@@ -180,7 +180,7 @@ Once everything is an Observable, the **same operators, the same error handling,
 
 ---
 
-## 9. Operator Taxonomy
+## 9. Operator Taxonomy — [detail](rxjs-insight-09.md)
 
 RxJS provides over 100 operators. They decompose along three orthogonal axes:
 
@@ -215,7 +215,7 @@ buffer → bufferWhen, bufferCount, bufferTime, bufferToggle
 
 ---
 
-## 10. Three-Step Workflow: Source → Pipeline → Sink
+## 10. Three-Step Workflow: Source → Pipeline → Sink — [detail](rxjs-insight-10.md)
 
 Every RxJS program follows one canonical shape:
 
@@ -237,7 +237,7 @@ The pipeline is **lazy** — nothing executes until `subscribe()`. The subscript
 
 ---
 
-## 11. Hot vs Cold Observables
+## 11. Hot vs Cold Observables — [detail](rxjs-insight-11.md)
 
 **Cold Observable** — unicast; a new execution starts for each subscriber. The source is inside the Observable factory. Examples: `of`, `from`, `ajax`. Like a recorded song — every listener gets their own playback from the start.
 
@@ -255,7 +255,7 @@ Bridging cold to hot:
 
 ---
 
-## 12. Declarative Dataflow vs Imperative Control Flow
+## 12. Declarative Dataflow vs Imperative Control Flow — [detail](rxjs-insight-12.md)
 
 | Dimension | Imperative | Declarative (RxJS) |
 |---|---|---|
@@ -276,7 +276,7 @@ This is also the axis that separates `Observable` from `Array`: an array holds a
 
 ---
 
-## 13. Practical Concerns: Memory, Error Handling, Backpressure, Testing
+## 13. Practical Concerns: Memory, Error Handling, Backpressure, Testing — [detail](rxjs-insight-13.md)
 
 These topics appear primarily in the more applied discussions across files:
 
@@ -310,7 +310,7 @@ RxJS provides `TestScheduler` with **marble notation** for deterministic, time-b
 
 ---
 
-## 14. TypeScript Integration
+## 14. TypeScript Integration — [detail](rxjs-insight-14.md)
 
 TypeScript turned RxJS from a clever runtime tool into a compile-time-checked FRP system. Key types:
 
